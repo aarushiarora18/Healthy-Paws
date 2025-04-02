@@ -159,7 +159,7 @@ const OnboardingPage = () => {
                                     View Details
                                     <ArrowUpRight className="h-4 w-4" />
                                 </button>
-                                </Link>
+                                
                             </div>
                         </div>
                     ))}
