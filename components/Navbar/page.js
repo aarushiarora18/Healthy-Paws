@@ -7,6 +7,8 @@ const Navbar = () => {
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center">
           {/* Brand/Logo */}
+          <img src="/dog1.png" alt="Logo" className="h-16 w-16 mr-3" />
+
           <Link href="/" className="text-3xl font-bold text-blue-600">
           Healthy Paws: Adopt. Love. Care.
           </Link>
