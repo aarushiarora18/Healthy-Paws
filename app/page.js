@@ -27,7 +27,7 @@ export default function LandingPage() {
           Mindful adoption means responsibly choosing a pet with love, ensuring a lifelong, caring, and well-prepared home.
           </p>
           
-          {/* Search Bar */}
+          {/* Search Bar
           <div className="max-w-2xl mx-auto mb-8">
             <div className="relative">
               <input 
@@ -39,7 +39,7 @@ export default function LandingPage() {
                 <Search className="w-5 h-5" />
               </button>
             </div>
-          </div>
+          </div> */}
 
           {/* <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/explore" 
