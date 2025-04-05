@@ -1,8 +1,15 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, Search, Star, Users, ArrowRight, BookOpen, CheckCircle } from 'lucide-react';
+import MascotButton from "../components/MascotButton";
+import ChatbotModal from "../components/ChatbotModal";
+
+ 
 
 export default function LandingPage() {
+  const [isChatOpen, setChatOpen] = useState(false);
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-between">
       
@@ -175,6 +182,9 @@ export default function LandingPage() {
               className="group bg-blue-700/30 backdrop-blur-sm text-white font-semibold px-8 py-4 rounded-full hover:bg-blue-700/40 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
               Explore Shelters
             </Link>
+
+            <MascotButton onClick={() => setChatOpen(true)} />
+            <ChatbotModal isOpen={isChatOpen} onClose={() => setChatOpen(false)} />
           </div>
         </div>
       </section>
