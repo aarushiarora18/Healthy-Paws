@@ -1,5 +1,6 @@
-// // app/api/dogs/[id]/route.js
-export const dogs = [
+// app/api/dogs/data.js
+
+const dogs = [
   {
     id: 1,
     name: "Boomer",
@@ -112,32 +113,4 @@ export const dogs = [
     size: "medium",
     energy: "low",
   },
-  {
-    id: 13,
-    name: "Jackie Chan",
-    breed: "Indie",
-    age: 1,
-    size: "medium",
-    energy: "high",
-    shelter: "Home for wings and tails foundation, Greater Noida, Utttar Pradesh",
-    image: "/dog13.jpeg"
-
-  }
-  
 ];
-
-
-  
-export async function GET(request, { params }) {
-  const { id } = params; // id is a string
-
-  const dog = dogs.find((dog) => dog.id === Number(id)); // compare number to number
-
-  if (!dog) {
-    return new Response("Dog not found", { status: 404 });
-  }
-
-  return Response.json(dog);
-}
-
-

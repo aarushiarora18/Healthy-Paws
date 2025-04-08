@@ -12,77 +12,77 @@ export async function GET(request, { params }) {
         description: 'Animal protection organization in Uttar Pradesh.',
         dogs: [
           {
-            id: 'd1',
+            id: '1',
             name: 'Boomer',
             age: 2,
             breed: 'Rottweiler',
             image: '/dog1.jpeg'
           },
           {
-            id: 'd2',
+            id: '2',
             name: 'Ghost',
             age: 2,
             breed: 'German Shepherd',
             image: '/dog2.jpeg'
           },
           {
-            id: 'd3',
+            id: '3',
             name: 'Lailaa',
             age: 3,
             breed: 'Golden Retriever',
             image: '/dog3.jpeg'
           },
           {
-            id: 'd4',
+            id: '4',
             name: 'Whiskey',
             age: 3,
             breed: 'Siberian Husky',
             image: '/dog4.jpeg'
           },
           {
-            id: 'd5',
+            id: '5',
             name: 'Poppins',
             age: 2,
             breed: 'Pomeranian',
             image: '/dog5.png'
           },
           {
-            id: 'd6',
+            id: '6',
             name: 'Daisy',
             age: 2.5,
             breed: 'Pomeranian',
             image: '/dog6.jpeg'
           },
           {
-            id: 'd7',
+            id: '7',
             name: 'Boogey',
             age: 4,
             breed: 'Labrador Retriever',
             image: '/dog7.jpeg'
           },
           {
-            id: 'd8',
+            id: '8',
             name: 'Wendy',
             age: 3,
             breed: '',
             image: '/dog8.jpeg'
           },
           {
-            id: 'd9',
+            id: '9',
             name: 'Casey',
             age: 3,
             breed: 'Golden Retriever',
             image: '/dog9.jpeg'
           },
           {
-            id: 'd10',
+            id: '10',
             name: '',
             age: 1,
             breed: '',
             image: '/dog10.jpeg'
           },
           {
-            id: 'd11',
+            id: '11',
             name: 'Peepee',
             age: 0.5,
             breed: '',
@@ -98,7 +98,7 @@ export async function GET(request, { params }) {
         description: 'Safe haven for stray pups.',
         dogs: [
             {
-                id: 'd12',
+                id: '12',
                 name: 'Oscar',
                 age: 3,
                 breed: '',

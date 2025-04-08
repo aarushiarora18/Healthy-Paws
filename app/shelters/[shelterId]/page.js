@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';  // <== Import Link!
 
 export default function ShelterDetailsPage() {
   const { shelterId } = useParams();
@@ -29,12 +30,14 @@ export default function ShelterDetailsPage() {
         <p className="text-center text-gray-600 mb-8">{shelter.description}</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {shelter.dogs && shelter.dogs.map((dog) => (
-            <div key={dog.id} className="bg-gray-100 rounded-xl p-4 shadow">
-              <img src={dog.image} alt={dog.name} className="w-full h-60 object-cover rounded-lg mb-4" />
-              <h2 className="text-xl font-semibold">{dog.name}</h2>
-              <p className="text-gray-600">Breed: {dog.breed}</p>
-              <p className="text-gray-600">Age: {dog.age} years</p>
-            </div>
+            <Link key={dog.id} href={`/dogs/${dog.id}`}>
+              <div className="bg-gray-100 rounded-xl p-4 shadow hover:shadow-lg transition">
+                <img src={dog.image} alt={dog.name} className="w-full h-60 object-cover rounded-lg mb-4" />
+                <h2 className="text-xl font-semibold">{dog.name}</h2>
+                <p className="text-gray-600">Breed: {dog.breed}</p>
+                <p className="text-gray-600">Age: {dog.age} years</p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -1,3 +1,4 @@
+//app/dog/page.js
 "use client";
 
 import Link from "next/link";
@@ -5,56 +6,56 @@ import Link from "next/link";
 export default function DogsPage() {
   const dogs = [
     {
-      id: "d1",
+      id: "1",
       name: "Boomer",
       age: 2,
       breed: "Rottweiler",
       image: "/dog1.jpeg",
     },
     {
-      id: "d2",
+      id: "2",
       name: "Ghost",
       age: 2,
       breed: "German Shephard",
       image: "/dog2.jpeg",
     },
     {
-      id: "d3",
+      id: "3",
       name: "Lailaa",
       age: 3,
       breed: "Golden retreiver",
       image: "/dog3.jpeg",
     },
     {
-      id: "d4",
+      id: "4",
       name: "Whiskey",
       age: 3,
       breed: "Siberian Husky",
       image: "/dog4.jpeg",
     },
     {
-      id: "d5",
+      id: "5",
       name: "Poppins",
       age: 2,
       breed: "Pomeranian",
       image: "/dog5.png",
     },
     {
-      id: "d6",
+      id: "6",
       name: "Daisy",
       age: 2.5,
       breed: "Pomeranian",
       image: "/dog6.jpeg",
     },
     {
-      id: "d7",
+      id: "7",
       name: "Boogey",
       age: 4,
       breed: "Labrador Retreiver",
       image: "/dog7.jpeg",
     },
     {
-      id: "d8",
+      id: "8",
       name: "Wendy",
       age: 3,
       breed: "",
@@ -68,21 +69,21 @@ export default function DogsPage() {
       image: "/dog9.jpeg",
     },
     {
-      id: "d10",
+      id: "10",
       name: "",
       age: 1,
       breed: "",
       image: "/dog10.jpeg",
     },
     {
-      id: "d11",
+      id: "11",
       name: "Peepee",
       age: 0.5,
       breed: "",
       image: "/dog11.jpeg",
     },
     {
-      id: "d12",
+      id: "12",
       name: "Oscar",
       age: 3,
       breed: "",
@@ -93,13 +94,13 @@ export default function DogsPage() {
   return (
     <div className="min-h-screen px-6 py-16 bg-white text-gray-800">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-blue-600">
+        <h1 className="text-4xl font-serif mb-8 text-center text-sky-600">
           Adoptable Dogs
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {dogs.map((dog) => (
             <Link href={`/dogs/${dog.id}`} key={dog.id}>
-              <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 cursor-pointer">
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 cursor-pointer">
                 <img
                   src={dog.image}
                   alt={dog.name}

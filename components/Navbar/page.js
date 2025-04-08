@@ -3,16 +3,18 @@ import React from 'react';
 
 const Navbar = () => {
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-blue-200/70 shadow-lg">
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-sky-100/70 shadow-lg">
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center">
           {/* Brand/Logo */}
-          <img src="/dog1.png" alt="Logo" className="h-16 w-16 mr-3" />
+          <img src="/paw.png" alt="Logo" className="h-16 w-16 mr-3" />
 
-          <Link href="/" className="text-3xl font-bold text-blue-600">
-          Healthy Paws: Adopt. Love. Care.
+          <Link href="/">
+            <img src="/heading-image.png" alt="Healthy Paws Logo" className="h-24 w-auto" />
           </Link>
         </div>
+
+        
         
         <div className="flex items-center space-x-6">
           {/* Navigation Links */}
