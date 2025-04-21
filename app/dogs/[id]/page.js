@@ -1,273 +1,70 @@
-// //app/dog/[id]/page.js
-// "use client";
+import dogs from "../../data/dogs";
+import { notFound } from "next/navigation";
 
-// import { useParams } from "next/navigation";
-// import { useEffect, useState } from "react";
+export default function DogDetail({ params }) {
+  const { id } = params;
+  const dog = dogs.find(d => d.id === id);
 
-// export default function DogProfile() {
-//   const { id } = useParams();
-//   const [dog, setDog] = useState(null);
-//   const [showForm, setShowForm] = useState(false);
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     phone: "",
-//     address: "",
-//     experience: "",
-//     reason: "",
-//   });
-
-//   useEffect(() => {
-//     const fetchDog = async () => {
-//       try {
-//         const res = await fetch(`/api/dogs/${id}`);
-//         if (!res.ok) throw new Error("Dog not found");
-//         const data = await res.json();
-//         setDog(data);
-//       } catch (err) {
-//         console.error(err);
-//       }
-//     };
-
-//     fetchDog();
-//   }, [id]);
-
-//   const handleChange = (e) => {
-//     setFormData((prev) => ({
-//       ...prev,
-//       [e.target.name]: e.target.value,
-//     }));
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const response = await fetch("/api/apply", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         dogId: id,
-//         ...formData,
-//       }),
-//     });
-
-//     if (response.ok) {
-//       alert("Application sent! 💌 We'll get back to you soon!");
-//       setShowForm(false);
-//     } else {
-//       alert("Something went wrong 😞");
-//     }
-//   };
-
-//   if (!dog) return <div className="p-6">Loading...</div>;
-
-//   return (
-//     <div className="p-6 md:flex gap-8">
-//       <div className="md:w-1/2">
-//         <img src={dog.image} alt={dog.name} className="rounded-lg w-full" />
-//       </div>
-//       <div className="md:w-1/2">
-//         <h1 className="text-4xl font-bold mb-2">{dog.name}</h1>
-//         <span
-//           className={`inline-block px-3 py-1 text-sm font-semibold rounded-full w-fit mb-4 ${
-//             dog.status === "Available"
-//               ? "bg-green-100 text-green-800"
-//               : dog.status === "Adopted"
-//               ? "bg-gray-300 text-gray-700"
-//               : "bg-yellow-100 text-yellow-800"
-//           }`}
-//         >
-//           {dog.status}
-//         </span>
-//         <p className="text-xl text-gray-700 mb-2">Breed: {dog.breed}</p>
-//         <p className="text-xl text-gray-700 mb-4">Age: {dog.age} years</p>
-
-//         {dog.status === "Available" && (
-//           <button
-//             onClick={() => setShowForm(true)}
-//             className="bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700 transition mb-6"
-//           >
-//             Apply for Adoption
-//           </button>
-//         )}
-
-//         {showForm && (
-//           <form onSubmit={handleSubmit} className="space-y-4">
-//             <div>
-//               <input
-//                 name="name"
-//                 type="text"
-//                 placeholder="Your Full Name"
-//                 value={formData.name}
-//                 onChange={handleChange}
-//                 required
-//                 className="w-full p-2 border rounded-lg"
-//               />
-//             </div>
-//             <div>
-//               <input
-//                 name="email"
-//                 type="email"
-//                 placeholder="Email Address"
-//                 value={formData.email}
-//                 onChange={handleChange}
-//                 required
-//                 className="w-full p-2 border rounded-lg"
-//               />
-//             </div>
-//             <div>
-//               <input
-//                 name="phone"
-//                 type="text"
-//                 placeholder="Phone Number"
-//                 value={formData.phone}
-//                 onChange={handleChange}
-//                 required
-//                 className="w-full p-2 border rounded-lg"
-//               />
-//             </div>
-//             <div>
-//               <input
-//                 name="address"
-//                 type="text"
-//                 placeholder="Home Address"
-//                 value={formData.address}
-//                 onChange={handleChange}
-//                 required
-//                 className="w-full p-2 border rounded-lg"
-//               />
-//             </div>
-//             <div>
-//               <textarea
-//                 name="experience"
-//                 placeholder="Tell us about your experience with pets"
-//                 value={formData.experience}
-//                 onChange={handleChange}
-//                 required
-//                 className="w-full p-2 border rounded-lg"
-//               />
-//             </div>
-//             <div>
-//               <textarea
-//                 name="reason"
-//                 placeholder="Why do you want to adopt this dog?"
-//                 value={formData.reason}
-//                 onChange={handleChange}
-//                 required
-//                 className="w-full p-2 border rounded-lg"
-//               />
-//             </div>
-//             <button
-//               type="submit"
-//               className="bg-green-600 text-white px-5 py-2 rounded-xl hover:bg-green-700 transition"
-//             >
-//               Submit Application
-//             </button>
-//           </form>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
-"use client";
-
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-
-export default function DogProfile() {
-  const { id } = useParams();
-  const [dog, setDog] = useState(null);
-  const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({ reason: "" });
-
-  useEffect(() => {
-    const fetchDog = async () => {
-      try {
-        const res = await fetch(`/api/dogs/${id}`);
-        if (!res.ok) throw new Error("Dog not found");
-        const data = await res.json();
-        setDog(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    fetchDog();
-  }, [id]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch("/api/apply", {
-      method: "POST",
-      body: JSON.stringify({
-        dogId: id,
-        reason: formData.reason,
-      }),
-    });
-
-    if (response.ok) {
-      alert("Application sent! 💌");
-      setShowForm(false);
-    } else {
-      alert("Something went wrong 😞");
-    }
-  };
-
-  if (!dog) return <div className="p-6">Loading...</div>;
+  if (!dog) return notFound();
 
   return (
-    <div className="p-6 md:flex gap-8">
-      <div className="md:w-1/2">
-        <img src={dog.image} alt={dog.name} className="rounded-lg w-full" />
-      </div>
-      <div className="md:w-1/2">
-        <h1 className="text-4xl font-bold mb-2">{dog.name}</h1>
-        <span
-          className={`inline-block px-3 py-1 text-sm font-semibold rounded-full w-fit mb-2 ${
-            dog.status === "Available"
-              ? "bg-green-100 text-green-800"
-              : dog.status === "Adopted"
-              ? "bg-gray-300 text-gray-700"
-              : "bg-yellow-100 text-yellow-800"
-          }`}
-        >
-          {dog.status}
-        </span>
-        <p className="text-xl text-gray-700 mb-1">Breed: {dog.breed || "Unknown"}</p>
-        <p className="text-lg text-gray-500 mb-1">Age: {dog.age} years</p>
-        <p className="text-md text-gray-600 mb-4 italic">🏡 Shelter: {dog.shelter || "Unknown shelter"}</p>
+    <div className="bg-pink-100 min-h-screen w-full">
+      <div className="container mx-auto p-6">
+        <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+          <div className="flex flex-col lg:flex-row items-center p-6 space-y-6 lg:space-y-0 lg:space-x-8">
+            {/* Dog Image */}
+            <div className="flex-shrink-0">
+              <img 
+                src={`${dog.image}`} 
+                alt={dog.breed} 
+                className="w-64 h-64 object-contain rounded-xl shadow-xl"
+ 
+              />
+            </div>
 
-        {!showForm ? (
-          dog.status === "Available" ? (
-            <button
-              onClick={() => setShowForm(true)}
-              className="mt-4 px-6 py-3 bg-pink-600 text-white text-lg rounded-lg w-fit"
-            >
-              Apply for Adoption
-            </button>
-          ) : (
-            <p className="mt-4 text-red-500 font-medium">This dog is not available for adoption.</p>
-          )
-        ) : (
-          <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-2">
-            <textarea
-              placeholder="Why do you want to adopt?"
-              value={formData.reason}
-              onChange={(e) =>
-                setFormData({ ...formData, reason: e.target.value })
-              }
-              className="w-full p-3 border border-gray-300 rounded-lg"
-              required
-            />
-            <button
-              type="submit"
-              className="mt-2 px-6 py-2 bg-blue-600 text-white rounded-lg self-start"
-            >
-              Submit
-            </button>
-          </form>
-        )}
+            {/* Dog Information */}
+            <div className="flex-1">
+              <h1 className="text-3xl font-bold text-center text-blue-500 mb-4">{dog.breed}</h1>
+
+              <div className="space-y-4">
+                <p className="text-gray-700 text-lg">
+                  <strong className="font-semibold text-blue-500">Lifespan:</strong> {dog.lifespan}
+                </p>
+                <p className="text-gray-700 text-lg">
+                  <strong className="font-semibold text-blue-500">Temperament:</strong> {dog.temperament}
+                </p>
+                <p className="text-gray-700 text-lg">
+                  <strong className="font-semibold text-blue-500">Origin:</strong> {dog.origin}
+                </p>
+                <p className="text-gray-700 text-lg">
+                  <strong className="font-semibold text-blue-500">Size:</strong> {dog.size}
+                </p>
+                <p className="text-gray-700 text-lg">
+                  <strong className="font-semibold text-blue-500">Grooming:</strong> {dog.grooming}
+                </p>
+                <p className="text-gray-700 text-lg">
+                  <strong className="font-semibold text-blue-500">Exercise Needs:</strong> {dog.exerciseNeeds}
+                </p>
+                <p className="text-gray-700 text-lg">
+                  <strong className="font-semibold text-blue-500">Energy:</strong> {dog.energy}
+                </p>
+                <p className="text-gray-700 text-lg">
+                  <strong className="font-semibold text-blue-500">Description:</strong> {dog.description}
+                </p>
+                <p className="text-gray-700 text-lg">
+                  <strong className="font-semibold text-blue-500">Estimated Price in India:</strong> ₹{dog.estimatedPrice}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Disclaimer */}
+          <div className="mt-8 p-4 bg-yellow-100 text-center text-gray-700 border-t-2 border-gray-300">
+            <p className="font-medium">
+              Remember, adopting a dog is a lifelong commitment! Please consider adopting from a shelter and giving a loving home to a furry friend in need.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -120,7 +120,7 @@ export const dogs = [
     size: "medium",
     energy: "high",
     shelter: "Home for wings and tails foundation, Greater Noida, Utttar Pradesh",
-    image: "/dog13.jpeg"
+    image: "/dog13.jpg"
 
   }
   

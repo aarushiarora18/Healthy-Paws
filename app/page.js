@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from 'react';
@@ -29,7 +30,7 @@ export default function LandingPage() {
           /> */}
         </div>
         <div 
-  className="relative w-full h-[700px] bg-cover bg-center flex flex-col items-center justify-center p-8"
+  className="relative w-full h-[700px] opacity-80 bg-cover bg-center flex flex-col items-center justify-center p-8"
   style={{
     backgroundImage: "url('/background-paws.png')",
     backgroundSize: "cover",
@@ -42,7 +43,7 @@ export default function LandingPage() {
   {/* <div className="absolute inset-0 bg-black/30"></div> */}
 
 
-  <div className="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center">
+  <div className="px-4 sm:px-6 lg:px-8 opacity-100 max-w-5xl mx-auto text-center">
     <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white [text-shadow:_0_1px_12px_rgb(0_0_0_/_20%)]">
       Adopt Your New
       <span className="block mt-2 text-white">
@@ -183,14 +184,14 @@ export default function LandingPage() {
                 link: "/vets"   // <-- Add link here
               },
               {
-                title: "Study your dog",
-                desc: "Before adopting, get to know all the dogs through our website.",
+                title: "Study different dog breeds",
+                desc: "Before adopting, get to know all your desired dogs breed through our website.",
                 icon: <BookOpen className="w-8 h-8" />,
                 link: "/dogs"
               },
               {
                 title: "Find shelters",
-                desc: "Discover shelters and apply for adoption easily.",
+                desc: "You can discover shelters near you and support them!",
                 icon: <ArrowRight className="w-8 h-8" />,
                 link: "/shelters"
               }

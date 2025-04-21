@@ -1,4 +1,3 @@
-//app/pages/login/page.js
 'use client'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -16,9 +15,9 @@ const Login = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "email") {
+    if (name === 'email') {
       setEmail(value);
-    } else if (name === "password") {
+    } else if (name === 'password') {
       setPassword(value);
     }
   };
