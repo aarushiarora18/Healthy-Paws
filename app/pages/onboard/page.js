@@ -1,110 +1,93 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Search, MapPin, Users, ArrowUpRight, SlidersHorizontal } from 'lucide-react';
+import React from 'react';
+import { MapPin, HeartPulse, Dog, Info, HelpCircle, Bot } from 'lucide-react';
+import Link from 'next/link';
 
-const DogAdoptionPage = () => {
-    const [searchQuery, setSearchQuery] = useState('');
-    const [selectedFilter, setSelectedFilter] = useState('all');
-    const [showFilters, setShowFilters] = useState(false);
-    const [dogs, setDogs] = useState([]);
+const features = [
+  {
+    title: 'Vets Near You',
+    description: 'Find trusted veterinarians in your area.',
+    icon: <HeartPulse className="h-6 w-6 text-blue-600" />,
+    link: '/vets'
+  },
+  {
+    title: 'Shelters Nearby',
+    description: 'Discover local dog shelters and adoption centers.',
+    icon: <MapPin className="h-6 w-6 text-green-600" />,
+    link: '/shelters'
+  },
+  {
+    title: 'Dog Breeds',
+    description: 'Explore various breeds and their characteristics.',
+    icon: <Dog className="h-6 w-6 text-yellow-600" />,
+    link: '/dogs'
+  },
+  {
+    title: 'Detailed Info',
+    description: 'Get in-depth info on dogs and their needs.',
+    icon: <Info className="h-6 w-6 text-purple-600" />
+  },
+  {
+    title: 'Dog Quiz',
+    description: 'Take a quiz to find your perfect dog match.',
+    icon: <HelpCircle className="h-6 w-6 text-pink-600" />,
+    link: '/quiz'
+  },
+  {
+    title: 'AI Chatbot',
+    description: 'Ask our AI anything about dogs and adoption.',
+    icon: <Bot className="h-6 w-6 text-red-600" />
+  }
+];
 
-    useEffect(() => {
-        const fetchDogs = async () => {
-            try {
-                const response = await axios.get('/api/dogs'); // Update with actual API endpoint
-                setDogs(response.data);
-            } catch (error) {
-                console.error("Error fetching dogs data:", error);
-            }
-        };
-        fetchDogs();
-    }, []);
+const DogAdoptionDashboard = () => {
+  return (
+    <div className="min-h-screen bg-gray-50 py-10 px-4">
+      <header className="text-center mb-10">
+        <h1 className="text-4xl font-bold text-gray-900">Welcome to HealthyPaws 🐾</h1>
+        <p className="text-gray-600 mt-2">Your one-stop destination for dog adoption and care</p>
+      </header>
 
-    const handleSearch = (e) => {
-        setSearchQuery(e.target.value);
-    };
-
-    const filteredDogs = dogs.filter(dog => {
-        const matchesSearchQuery =
-            dog.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            dog.breed.toLowerCase().includes(searchQuery.toLowerCase());
-        const matchesSelectedFilter =
-            selectedFilter === 'all' ||
-            (selectedFilter === 'small' && dog.size === 'Small') ||
-            (selectedFilter === 'medium' && dog.size === 'Medium') ||
-            (selectedFilter === 'large' && dog.size === 'Large');
-        return matchesSearchQuery && matchesSelectedFilter;
-    });
-
-    return (
-        <div className="min-h-screen bg-gray-50">
-            <header className="bg-white shadow-sm py-6 px-8">
-                <h1 className="text-3xl font-bold text-gray-900">Find Your Perfect Dog</h1>
-                <p className="mt-2 text-sm text-gray-600">Adopt a loving companion today</p>
-            </header>
-
-            <div className="max-w-4xl mx-auto px-4 py-8">
-                <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-                    <div className="relative flex-1 w-full">
-                        <Search className="absolute left-3 top-3 text-gray-400" />
-                        <input
-                            type="text"
-                            className="block w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Search by name or breed..."
-                            value={searchQuery}
-                            onChange={handleSearch}
-                        />
-                    </div>
-                    <button
-                        onClick={() => setShowFilters(!showFilters)}
-                        className="flex items-center gap-2 px-4 py-2 border rounded-lg hover:bg-gray-50"
-                    >
-                        <SlidersHorizontal className="h-5 w-5" /> Filters
-                    </button>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature, index) =>
+          feature.link ? (
+            <Link
+              href={feature.link}
+              key={index}
+              className="group p-6 bg-white rounded-2xl shadow hover:shadow-lg transition duration-300"
+            >
+              <div className="flex items-center gap-4">
+                <div className="bg-gray-100 rounded-full p-3">{feature.icon}</div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-1">{feature.description}</p>
                 </div>
-                {showFilters && (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                        {['all', 'small', 'medium', 'large'].map(filter => (
-                            <button
-                                key={filter}
-                                onClick={() => setSelectedFilter(filter)}
-                                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                                    selectedFilter === filter ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'
-                                }`}
-                            >
-                                {filter.charAt(0).toUpperCase() + filter.slice(1)}
-                            </button>
-                        ))}
-                    </div>
-                )}
+              </div>
+            </Link>
+          ) : (
+            <div
+              key={index}
+              className="p-6 bg-white rounded-2xl shadow opacity-90 cursor-default"
+            >
+              <div className="flex items-center gap-4">
+                <div className="bg-gray-100 rounded-full p-3">{feature.icon}</div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900">{feature.title}</h3>
+                  <p className="text-sm text-gray-600 mt-1">{feature.description}</p>
+                </div>
+              </div>
             </div>
+          )
+        )}
+      </div>
 
-            <div className="max-w-4xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                {filteredDogs.map(dog => (
-                    <div key={dog.id} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition">
-                        <h3 className="text-xl font-semibold">{dog.name}</h3>
-                        <p className="text-gray-700">Breed: {dog.breed}</p>
-                        <div className="mt-2 flex items-center text-gray-600">
-                            <MapPin className="h-4 w-4 mr-1" />
-                            <span className="text-sm">{dog.location}</span>
-                        </div>
-                        <div className="mt-4 flex items-center text-gray-600">
-                            <Users className="h-4 w-4 mr-1" />
-                            <span className="text-sm">{dog.age} years old</span>
-                        </div>
-                        <button className="mt-6 w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                            Adopt Now <ArrowUpRight className="h-4 w-4" />
-                        </button>
-                    </div>
-                ))}
-            </div>
-
-            <footer className="bg-white border-t py-6 text-center text-gray-600">
-                © 2024 HealthyPaws. All rights reserved.
-            </footer>
-        </div>
-    );
+      <footer className="mt-16 text-center text-gray-500 text-sm">
+        © 2024 HealthyPaws. All rights reserved.
+      </footer>
+    </div>
+  );
 };
 
-export default DogAdoptionPage;
+export default DogAdoptionDashboard;

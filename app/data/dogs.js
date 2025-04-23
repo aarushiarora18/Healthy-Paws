@@ -450,7 +450,7 @@ export const dogs = [
       estimatedPrice: "18000"
     }, 
     {
-      id: "35",
+      id: "33",
       breed: "Pitbull",
       image: "/pitbull.jpeg",
       lifespan: "12-14 years",
@@ -464,7 +464,7 @@ export const dogs = [
       estimatedPrice: "20000"
     },
     {
-      id: "36",
+      id: "34",
       breed: "Basset Hound",
       image: "/basset-hound.jpeg",
       lifespan: "10-12 years",

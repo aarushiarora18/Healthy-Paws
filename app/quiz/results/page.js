@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { dogs } from '@/data/dogs'; // Your updated dogs array
+import { dogs } from '../../data/dogs'; // Your updated dogs array
 
 function ResultsPageContent() {
   const params = useSearchParams();
@@ -32,7 +32,7 @@ function ResultsPageContent() {
       {matchingDogs.map((dog) => (
         <Link
           key={dog.id}
-          href={`/dog/${dog.id}`}
+          href={`/dogs/${dog.id}`}
           className="block rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white"
         >
           <div className="relative w-full h-48">
@@ -40,7 +40,7 @@ function ResultsPageContent() {
               src={dog.image}
               alt={dog.breed}
               fill
-              className="object-cover"
+              className="object-contain"
             />
           </div>
           <div className="p-4">
